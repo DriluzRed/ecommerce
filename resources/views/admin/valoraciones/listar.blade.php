@@ -4,10 +4,10 @@
     <div class="section">
     <a href="{{ route('admin-menu') }}" class="button is-link">Volver</a>
     <h1 class="title is-4 mb-4">Lista de Valoraciones</h1>
-    <a href="{{ route('admin-valoraciones-crear') }}" class="button is-primary mb-3">Crear Valoración</a>
 
     @if (count($valoraciones) === 0)
-        <p>No hay valoraciones disponibles.</p>
+    <a href="{{ route('admin-valoraciones-crear') }}" class="button is-primary mb-3">Crear Valoración</a>
+
     @else
         <table class="table is-fullwidth">
             <thead>
@@ -31,6 +31,8 @@
                 @endforeach
             </tbody>
         </table>
+    <a href="{{ route('admin-valoraciones-crear') }}" class="button is-primary mb-3">Crear Valoración</a>
+
     @endif
     </div>
 </div>

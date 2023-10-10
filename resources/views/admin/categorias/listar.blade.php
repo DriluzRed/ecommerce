@@ -24,13 +24,16 @@
                     <td>{{ $categoria->activo ? 'Si' : 'No' }}</td>
                     <td>
                         <a href="{{ route('admin-categorias-editar', $categoria->id) }}" class="button is-small is-link">Editar</a>
-                        <a href="{{ route('admin-categorias-eliminar', $categoria->id) }}" class="button is-small is-danger">Eliminar</a>
+                        {{-- <a href="{{ route('admin-categorias-eliminar', $categoria->id) }}" class="button is-small is-danger">Eliminar</a> --}}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    <a href="{{ route('admin-categorias-crear') }}" class="button is-link">Agregar</a>
+
         @endif
+        
     </div>
 </div>
 

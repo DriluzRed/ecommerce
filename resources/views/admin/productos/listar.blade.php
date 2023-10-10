@@ -27,12 +27,13 @@
                     <td>{{ $producto->categoria->nombre }}</td>
                     <td>
                         <a href="{{ route('admin-productos-editar', $producto->id) }}" class="button is-small is-link">Editar</a>
-                        <a href="{{ route('admin-productos-eliminar', $producto->id) }}" class="button is-small is-danger">Eliminar</a>
+                        {{-- <a href="{{ route('admin-productos-eliminar', $producto->id) }}" class="button is-small is-danger">Eliminar</a> --}}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('admin-productos-crear') }}" class="button is-link">Agregar</a>
         @endif
     </div>
 </div>
