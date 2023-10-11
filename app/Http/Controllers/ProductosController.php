@@ -47,7 +47,11 @@ class ProductosController extends Controller
     }
     public function destroy(Producto $producto)
     {
+        if ($producto->categoria()->count() > 0 || $producto->valoraciones()->count() > 0) {
+            return back()->with('error', 'No se puede eliminar el producto porque tiene valoraciones o categorias asociados.');
+        }
         $producto->delete();
+
         return redirect()->route('admin-productos');
     }
 }

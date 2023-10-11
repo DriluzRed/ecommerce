@@ -6,6 +6,18 @@
         @if (count($productos) == 0)
         <h2 class="title is-size-4">No hay productos creados. ¿Quieres crear uno nuevo? Haz click <a href="{{ route('admin-productos-crear') }}" class="has-text-link">aquí</a>.</h2>
         @else
+        @if (session('success'))
+        <div class="notification is-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
+    @if (session('error'))
+        <div class="notification is-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    
         <table class="table is-fullwidth">
             <thead>
                 <tr>
@@ -27,7 +39,7 @@
                     <td>{{ $producto->categoria->nombre }}</td>
                     <td>
                         <a href="{{ route('admin-productos-editar', $producto->id) }}" class="button is-small is-link">Editar</a>
-                        {{-- <a href="{{ route('admin-productos-eliminar', $producto->id) }}" class="button is-small is-danger">Eliminar</a> --}}
+                        <a href="{{ route('admin-productos-eliminar', $producto->id) }}" class="button is-small is-danger">Eliminar</a>
                     </td>
                 </tr>
                 @endforeach

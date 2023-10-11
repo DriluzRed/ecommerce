@@ -9,6 +9,18 @@
     <a href="{{ route('admin-valoraciones-crear') }}" class="button is-primary mb-3">Crear Valoración</a>
 
     @else
+    @if (session('success'))
+    <div class="notification is-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="notification is-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
         <table class="table is-fullwidth">
             <thead>
                 <tr>
@@ -26,6 +38,8 @@
                         <td>{{ $valoracion->comentario }}</td>
                         <td>
                             <a href="{{ route('admin-valoraciones-editar', $valoracion->id) }}" class="button is-primary is-small">Editar</a>
+                            <a href="{{ route('admin-valoraciones-eliminar', $valoracion->id) }}" class="button is-danger is-small">Eliminar</a>
+                            
                         </td>
                     </tr>
                 @endforeach

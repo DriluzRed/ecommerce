@@ -5,6 +5,18 @@
         @if (count($categorias) == 0)
         <h2 class="title is-size-4">No hay categorías creadas. ¿Quieres crear una nueva categoría? Haz click <a href="{{ route('admin-categorias-crear') }}" class="has-text-link">aquí</a>.</h2>
         @else
+        @if (session('success'))
+    <div class="notification is-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="notification is-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
         <table class="table is-fullwidth">
             <thead>
                 <tr>
@@ -24,7 +36,7 @@
                     <td>{{ $categoria->activo ? 'Si' : 'No' }}</td>
                     <td>
                         <a href="{{ route('admin-categorias-editar', $categoria->id) }}" class="button is-small is-link">Editar</a>
-                        {{-- <a href="{{ route('admin-categorias-eliminar', $categoria->id) }}" class="button is-small is-danger">Eliminar</a> --}}
+                        <a href="{{ route('admin-categorias-eliminar', $categoria->id) }}" class="button is-small is-danger">Eliminar</a>
                     </td>
                 </tr>
                 @endforeach

@@ -34,7 +34,7 @@ class ValoracionesController extends Controller
     public function edit(Valoracion $valoracion)
     {
         $productos = Producto::all();
-        return view('valoraciones.edit')
+        return view('admin.valoraciones.editar')
             ->with('valoracion', $valoracion)
             ->with('productos', $productos);
     }
@@ -49,6 +49,9 @@ class ValoracionesController extends Controller
     }
     public function destroy(Valoracion $valoracion)
     {
+        if($valoracion->producto()->count() > 0){
+            return back()->with('error', 'No se puede eliminar la valoracion porque tiene productos asociados.');
+        }
         $valoracion->delete();
         return redirect()->route('admin-valoraciones');
     }
