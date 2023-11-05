@@ -60,3 +60,4 @@ Route::post('/admin/valoraciones/update/{valoracion}', [ValoracionesController::
     ->name('admin-valoraciones-update');
 Route::get('/admin/valoraciones/eliminar/{valoracion}', [ValoracionesController::class, 'destroy'])
     ->name('admin-valoraciones-eliminar');
+

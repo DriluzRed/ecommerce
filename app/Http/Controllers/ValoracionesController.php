@@ -12,13 +12,13 @@ class ValoracionesController extends Controller
     public function index()
     {
         $valoraciones = Valoracion::all();
-        return view('admin.valoraciones.listar')->with('valoraciones', $valoraciones);
+        return response()->json(['valoraciones' => $valoraciones]);
     }
 
     public function create()
     {
         $productos = Producto::all();
-        return view('admin.valoraciones.crear')->with('productos', $productos);
+        return response()->json(['productos' => $productos]);
     }
 
     public function store(Request $request)
@@ -28,15 +28,13 @@ class ValoracionesController extends Controller
         $valoracion->puntuacion = $request->puntuacion;
         $valoracion->comentario = $request->comentario;
         $valoracion->save();
-        return redirect()->route('admin-valoraciones');
+        return response()->json(['message' => 'Valoración creada exitosamente']);
     }
 
     public function edit(Valoracion $valoracion)
     {
         $productos = Producto::all();
-        return view('admin.valoraciones.editar')
-            ->with('valoracion', $valoracion)
-            ->with('productos', $productos);
+        return response()->json(['valoracion' => $valoracion, 'productos' => $productos]);
     }
 
     public function update(Request $request, Valoracion $valoracion)
@@ -45,14 +43,15 @@ class ValoracionesController extends Controller
         $valoracion->puntuacion = $request->puntuacion;
         $valoracion->comentario = $request->comentario;
         $valoracion->save();
-        return redirect()->route('admin-valoraciones');
+        return response()->json(['message' => 'Valoración actualizada exitosamente']);
     }
+
     public function destroy(Valoracion $valoracion)
     {
-        if($valoracion->producto()->count() > 0){
-            return back()->with('error', 'No se puede eliminar la valoracion porque tiene productos asociados.');
+        if ($valoracion->producto()->count() > 0) {
+            return response()->json(['error' => 'No se puede eliminar la valoración porque tiene productos asociados.']);
         }
         $valoracion->delete();
-        return redirect()->route('admin-valoraciones');
+        return response()->json(['message' => 'Valoración eliminada exitosamente']);
     }
 }
